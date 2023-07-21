@@ -1,0 +1,26 @@
+.app-container {
+  min-height: 100vh;
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  background-color: #f2f4f4;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 810px) and (max-width: 834px) and (min-resolution: 2dppx) {
+   grid-template-columns: 1fr;
+   grid-template-rows: auto 1fr;
+  }
+
+  .routes{
+    height: 100%;
+    border-left: 1px solid #ddd;
+  }
+
+}

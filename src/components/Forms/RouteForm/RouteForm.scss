@@ -1,0 +1,103 @@
+$primary-color: #8a2be2;
+
+.route-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+
+    .input-wrapper {
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 10% 90%;
+        align-items: center;
+        justify-content: flex-start;
+
+        // Reset default styles for date input
+        input[type="date"] {
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+
+            // Styling the date input icon
+            &::-webkit-calendar-picker-indicator {
+                display: none;
+            }
+
+
+
+            margin-bottom: 10px;
+            grid-column: 2; // Place the input in the second column
+        }
+
+
+        @media (max-width: 1024px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            display: block;
+            margin-right: 1rem;
+            margin-bottom: 5px;
+            color: $primary-color;
+            justify-self: end;
+            color: grey;
+        }
+
+        select,
+        input[type="checkbox"],
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            justify-self: start;
+        }
+
+
+        input[type="checkbox"] {
+            position: absolute;
+            left: 0;
+            margin-left: 0;
+        }
+    }
+
+    .route-btn-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+
+
+    button[type="submit"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .5rem 1rem;
+        margin-top: .5rem;
+        background-color: #e8e8e8;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all .3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f3e9fc;
+            border: 1px solid #8a2be2;
+            color: #8a2be2;
+        }
+    }
+}

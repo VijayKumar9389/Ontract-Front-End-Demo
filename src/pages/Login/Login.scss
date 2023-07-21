@@ -1,0 +1,94 @@
+$primary-color: #8a2be2;
+$secondary-color: #4c167c;
+$logo-fade-in-duration: 0.5s;
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 2rem;
+  }
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, $primary-color, $secondary-color);
+
+  h1 {
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    // animation: logo-fade-in $logo-fade-in-duration;
+    opacity: 0;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+    }
+  }
+}
+
+.login-form {
+  background-color: #fff;
+  width: 400px;
+  max-width: 90%;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .login-heading {
+    text-align: center;
+    color: $primary-color;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: $primary-color;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  .login-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+@keyframes logo-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

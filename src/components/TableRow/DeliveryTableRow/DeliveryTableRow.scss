@@ -1,0 +1,74 @@
+// Variables
+$primary-color: #8a2be2;
+$dot-size: 20px;
+$dot-animation-duration: 1s;
+
+tbody{
+  tr {
+    height: 80px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    &:not(:last-child) {
+      margin-bottom: 1rem; /* Adjust the desired spacing between rows */
+    }
+  
+    &:hover {
+      background-color: #eaeaea;
+    }
+  
+    td {
+      padding: 12px 5px;
+      font-weight: normal;
+      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+  
+      &:first-child {
+  
+      }
+  
+      &:first-child {
+        width: 300px;
+        text-align: left;
+      }
+  
+      &.location-cell {
+        white-space: nowrap;
+      }
+  
+      &.interest-cell {
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+  
+          li {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+  
+      a,
+      av {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        text-align: center;
+      }
+  
+      a {
+        background-color: lighten($primary-color, 25%);
+        color: $primary-color;
+      }
+  
+      av {
+        background-color: lighten(#48bb78, 25%);
+        color: #48bb78;
+      }
+    }
+  }
+}

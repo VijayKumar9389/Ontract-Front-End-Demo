@@ -1,0 +1,43 @@
+// Variables
+$primary-color: #8a2be2;
+$dot-size: 20px;
+$dot-animation-duration: 1s;
+
+// Styles for StakeholderTableRow
+.delivery-tbl {
+  width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  border-radius: 5px;
+
+  thead {
+    background-color: #eaeaea;
+    border: 1px solid #ddd;
+    border: none;
+    color: grey;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+
+    th {
+      text-transform: uppercase;
+      padding: 12px 5px;
+      height: 60px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+  }
+
+  tbody {
+
+  }
+}
