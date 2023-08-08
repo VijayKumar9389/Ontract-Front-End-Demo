@@ -13,6 +13,9 @@ import Stakeholders from './pages/Stakeholders/Stakeholders';
 import StakeholderProfile from './pages/StakeholderProfile/StakeholderProfile';
 import Deliverys from './pages/Deliverys/Deliverys';
 import DeliveryRoute from './pages/DeliveryRoute/DeliveryRoute';
+import ProjectTable from './components/Table/ProjectTable/ProjectTable';
+import Projects from './pages/Projects/Projects';
+import Records from './pages/Records/Records';
 
 function App() {
 
@@ -27,11 +30,11 @@ function App() {
   }, [isTokenExpired()]);
 
   if (!isLoggedIn) return <Login />
-
+  
   return (
     <div className="app-container">
       <Sidebar />
-
+      <ProjectTable />
       <div className='routes'>
         <Routes >
           <Route path="/" element={<Dashboard />} />
@@ -39,6 +42,8 @@ function App() {
           <Route path="/stakeholders/:name" element={<StakeholderProfile />} />
           <Route path="/deliverys" element={<Deliverys />} />
           <Route path="/deliverys/:route" element={<DeliveryRoute /> } />
+          <Route path="/records" element={ <Records />} />
+          <Route path="/projects" element={<Projects />} />
         </Routes>
       </div>
 

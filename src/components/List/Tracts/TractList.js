@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useSelector} from 'react-redux';
 import { getRelatedTracts } from '../../../services/api';
 
 import './TractList.scss';
@@ -8,11 +9,11 @@ import { FaUserAlt } from 'react-icons/fa';
 
 const TractList = ({ name }) => {
 
-    const table = 'Wascana_2044';
+    const project = useSelector((state) => state.project.project);
     const [relatedTracts, setRelatedTracts] = useState([]);
 
     useEffect(() => {
-        getRelatedTracts(table, name)
+        getRelatedTracts(project, name)
             .then((response) => setRelatedTracts(response.data));
     }, [name]);
 
@@ -25,8 +26,10 @@ const TractList = ({ name }) => {
         const piplineStatus = list[0].PIPELINESTATUS;
 
         const tractForms = list.map((stakeholder, index) => (
-            <TractForm key={index} tract={stakeholder} index={index} />
+            <TractForm key={stakeholder.ID} tract={stakeholder} index={index} />
         ));
+
+
 
         return (
             <ul className='tract-record'>

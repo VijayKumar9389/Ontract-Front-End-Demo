@@ -12,9 +12,13 @@ export const projectSlice = createSlice({
         setOpen: (state) => {
             state.isOpen = !state.isOpen;
         },
+        setProject: (state, action) => {
+            state.project = action.payload;
+            state.isOpen = !state.isOpen;
+        }
     }
 });
 
-export const { setOpen } = projectSlice.actions;
+export const { setOpen, setProject } = projectSlice.actions;
 
 export default projectSlice.reducer;

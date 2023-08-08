@@ -1,0 +1,190 @@
+.popup-container {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    animation-name: fade-in;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .popup-background {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .popup-wrapper {
+        background-color: #fff;
+        width: 40%;
+        height: 100vh;
+        position: fixed;
+        right: 0;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+
+        display: grid;
+        grid-template-rows: 80px 1fr 80px;
+        animation: slide-leftt .3s;
+
+        @media (max-width: 1024px) {
+            width: 100%;
+            height: 100%;
+
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        .filter-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            border-top-left-radius: 5px;
+
+            h2 {
+                margin: 0;
+                font-weight: 500;
+                font-size: 1.5rem;
+                color: #333;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            button{
+                border: none;
+                border-radius: 50px;
+                height: 30px;
+                width: 30px;
+                background-color: #fff;
+                transition: ease-in-out .3s;
+    
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    
+                &:hover{
+                    color: #fff;
+                    background-color: #8a2be2;
+                    cursor: pointer;
+                }
+    
+            }
+
+        }
+
+
+        .filter-menu {
+            overflow-y: scroll;
+            padding: 1rem;
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: #8a2be2 transparent;
+
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #8a2be2;
+                border-radius: 5px;
+            }
+
+            .filter-wrapper {
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                align-items: center;
+                text-align: left;
+                grid-gap: 1rem;
+
+                select {
+                    height: 40px;
+                    width: 100%;
+                    border-radius: 5px;
+                    border: 1px solid #ddd;
+                }
+
+                label{
+                    width: 100%;
+                }
+            }
+
+            .radio-container {
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                align-items: center;
+                text-align: left;
+                grid-gap: 1rem;
+
+                label{
+                    width: 100%;
+                }
+
+            }
+        }
+
+        .filter-btn-menu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;        
+
+
+        }
+
+    }
+
+}
+
+@keyframes slide-leftt {
+    from {
+        right: -500px;
+        opacity: 0;
+    }
+
+    to {
+        right: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.filter-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.filter-menu::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.filter-menu::-webkit-scrollbar-thumb {
+    background-color: #8a2be2;
+    border-radius: 20px;
+}
+
+.filter-menu::-webkit-scrollbar-thumb:hover {
+    background-color: darken(#8a2be2, 10%);
+}

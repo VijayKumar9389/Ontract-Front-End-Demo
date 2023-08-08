@@ -1,73 +1,124 @@
-import React, { useState } from 'react';
-
-import './StakeholderForm.scss';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { FaUserAlt } from 'react-icons/fa';
 import { ImLocation2 } from 'react-icons/im';
 import { FaTruckMoving } from 'react-icons/fa';
 import { BsChatLeftTextFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+
+import './StakeholderForm.scss';
+
 import Connections from '../../List/Connections/Connections';
-// import Connections from '../../Connections/Connections';
+import { useSelector } from 'react-redux';
 
 const StakeholderForm = ({ stakeholder, toggle }) => {
+  const navigate = useNavigate();
+  const project = useSelector((state) => state.project.project);
 
-    const [formData, setFormData] = useState({
-        name: stakeholder.NAME || '',
-        contacted: stakeholder.CONTACTED || '',
-        status: stakeholder.STATUS || '',
-        corporation: stakeholder.CORPORATION || '',
-        stakeholderComment: stakeholder.STAKEHOLDERCOMMENT || '',
-        homeAddress: stakeholder.STREET || '',
-        mailingAddress: stakeholder.MAILING || '',
-        phoneNumber: stakeholder.PHONE || '',
-        email: stakeholder.EMAIL || '',
-        attemptDates: stakeholder.ATTEMPTS || '',
-        consultationDate: stakeholder.CONSULTATION || '',
-        followUp: stakeholder.FOLLOWUP || '',
-    });
+  const {
+    NAME,
+    CONTACTED,
+    CONTACT,
+    CORPERATION,
+    STAKEHOLDERCOMMENT,
+    STREET,
+    MAILING,
+    PHONE,
+    EMAIL,
+    ATTEMPTS,
+    CONSULTATION,
+    FOLLOWUP,
+  } = stakeholder;
 
-    const isFormDataChanged = () => {
-        if (
-            (stakeholder.NAME || '') !== (formData.name || '') ||
-            (stakeholder.CONTACTED || '') !== (formData.contacted || '') ||
-            (stakeholder.STATUS || '') !== (formData.status || '') ||
-            (stakeholder.CORPORATION || '') !== (formData.corporation || '') ||
-            (stakeholder.STAKEHOLDERCOMMENT || '') !== (formData.stakeholderComment || '') ||
-            (stakeholder.STREET || '') !== (formData.homeAddress || '') ||
-            (stakeholder.MAILING || '') !== (formData.mailingAddress || '') ||
-            (stakeholder.PHONE || '') !== (formData.phoneNumber || '') ||
-            (stakeholder.EMAIL || '') !== (formData.email || '') ||
-            (stakeholder.ATTEMPTS || '') !== (formData.attemptDates || '') ||
-            (stakeholder.CONSULTATION || '') !== (formData.consultationDate || '') ||
-            (stakeholder.FOLLOWUP || '') !== (formData.followUp || '')
-        ) {
-            return true;
+  const [formData, setFormData] = useState({
+    name: NAME || '',
+    contacted: CONTACTED || '',
+    status: CONTACT || '',
+    corporation: CORPERATION || '',
+    stakeholderComment: STAKEHOLDERCOMMENT || '',
+    homeAddress: STREET || '',
+    mailingAddress: MAILING || '',
+    phoneNumber: PHONE || '',
+    email: EMAIL || '',
+    attemptDates: ATTEMPTS || '',
+    consultationDate: CONSULTATION || '',
+    followUp: FOLLOWUP || '',
+  });
+
+  const isFormDataUpdated = () => {
+    if (
+      NAME !== formData.name ||
+      CONTACTED !== formData.contacted ||
+      CONTACT !== formData.status ||
+      CORPERATION !== formData.corporation ||
+      STAKEHOLDERCOMMENT !== formData.stakeholderComment ||
+      STREET !== formData.homeAddress ||
+      MAILING !== formData.mailingAddress ||
+      PHONE !== formData.phoneNumber ||
+      EMAIL !== formData.email ||
+      ATTEMPTS !== formData.attemptDates ||
+      CONSULTATION !== formData.consultationDate ||
+      FOLLOWUP !== formData.followUp
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5500/stakeholder/update/stakeholder/${project}/${NAME}`, formData)
+      .then((response) => {
+        if (!response.data.status) {
+          // Handle the case when the API call fails
+          // You can show an error message or perform any other action here
+        } else {
+          // API call is successful, navigate to the new stakeholder page
+          navigate(`/stakeholders/${formData.name}`, {
+            replace: true,
+            state: {
+              stakeholder: {
+                NAME: formData.name,
+                CONTACT: formData.contacted,
+                STREET: formData.homeAddress,
+                MAILING: formData.mailingAddress,
+                PHONE: formData.phoneNumber,
+                CONTACTED: formData.contacted,
+                ATTEMPTS: formData.attemptDates,
+                CONSULTATION: formData.consultationDate,
+                FOLLOWUP: formData.followUp,
+                EMAIL: formData.email,
+                STAKEHOLDERCOMMENT: formData.stakeholderComment,
+                CORPORATION: formData.corporation,
+              },
+            },
+          });
         }
-
-        return false;
-    };
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission here
-        console.log(formData);
-    };
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle any error that occurs during the API call
+      });
+  };
 
     return (
         <form className='stakeholder-form' onSubmit={handleSubmit}>
             <div className="form-heading">
                 <h2>{stakeholder.NAME}</h2>
-                <div className='form-heading-btn'>
-                    {isFormDataChanged() ? (
-                        <button className='active' type="submit">Submit</button>
-                    ) : (
-                        <button className='inactive' type="submit" disabled>Submit</button>
-                    )}
-                    <button onClick={() => toggle()}>SetDelivery</button>
-                </div>
+            </div>
+            <div className='form-heading-btn'>
+                {isFormDataUpdated() ? (
+                    <button className='active' type="submit">Submit</button>
+                ) : (
+                    <button className='inactive' type="submit" disabled>Submit</button>
+                )}
+                <button type="button">Survey</button>
+                <button type="button" onClick={() => toggle()}>Set Delivery</button>
             </div>
             <div className='stakeholder-form-body'>
                 <div className='stakeholder-form-wrapper'>
@@ -97,9 +148,7 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                 />
                             </div>
                         </div>
-
                         <div className='form-column'>
-
                             <div className='ddl-wrapper'>
                                 <label htmlFor="status">Status</label>
                                 <select
@@ -108,8 +157,9 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                     value={formData.status}
                                     onChange={handleChange}
                                 >
-                                    <option value="">Status</option>
-                                    {/* Add options for status */}
+                                    <option value="GREEN">GREEN</option>
+                                    <option value="YELLOW">YELLOW</option>
+                                    <option value="RED">RED</option>
                                 </select>
                             </div>
                             <div className='ddl-wrapper'>
@@ -120,16 +170,13 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                     value={formData.corporation}
                                     onChange={handleChange}
                                 >
-                                    <option value="">Corporation</option>
-                                    {/* Add options for corporation */}
+                                    <option value="">N/A</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
                                 </select>
                             </div>
-
                         </div>
-
-
                     </div>
-
                     <div className="category location">
                         <div className='column-header'><h3>Location</h3><ImLocation2 /></div>
                         <div className='form-column'>
@@ -143,6 +190,7 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                     placeholder="Home Address"
                                     rows={4}
                                 />
+                                {console.log(stakeholder)}
                             </div>
                             <div className="form-row">
                                 <label htmlFor="mailingAddress">Mailing Address</label>
@@ -157,7 +205,6 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                             </div>
                         </div>
                     </div>
-
                     <div className="category contact">
                         <div className='column-header'><h3>Contact</h3><BsChatLeftTextFill /></div>
                         <div className='form-column'>
@@ -197,8 +244,9 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                     value={formData.contacted}
                                     onChange={handleChange}
                                 >
-                                    <option value="">Contacted</option>
-                                    {/* Add options for contacted */}
+                                    <option value="">N/A</option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
                                 </select>
                             </div>
                             <div className="form-row">
@@ -226,7 +274,6 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                                     placeholder="Attempt Dates"
                                 />
                             </div>
-
                             <div className="form-row">
                                 <label htmlFor="followUp">Follow Up</label>
                                 <input
@@ -241,16 +288,11 @@ const StakeholderForm = ({ stakeholder, toggle }) => {
                         </div>
                     </div>
                 </div>
-
                 <div className='connections-wrapper'>
                     <Connections stakeholder={stakeholder} />
                 </div>
-
             </div>
-
         </form>
-
-
     );
 };
 

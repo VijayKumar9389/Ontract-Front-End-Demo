@@ -1,156 +1,170 @@
 .route-container {
-    $primary-color: #8a2be2;
+  $primary-color: #8a2be2;
 
-    
-    .heading {
-        width: 100%;
-        min-height: 60px;
-        height: fit-content;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        background-color: #fff;
-        border-bottom: 1px solid #ddd;
-      
-      
-        @media (max-width: 1024px) {
-          height: auto; /* Change height to auto for dynamic height */
-          flex-direction: column;
-          align-items: flex-start; /* Adjust alignment for mobile layout */
-          padding-bottom: 0.5rem; /* Adjust padding as needed */
-        }
-      
-        h2 {
-          white-space: normal; /* Allow title to wrap to multiple lines */
-          overflow: hidden;
-          text-overflow: ellipsis;
-          padding: .5rem 0;
-          text-align: left;
-        }
-      
-        .form-heading-btn {
-          display: flex;
-          align-items: center;
-          width: fit-content;
-      
-          @media (max-width: 1024px) {
-            button{
-              margin-left: 0;
-            }
-          }
-      
-          button {
-            padding: 8px 16px;
-            background-color: #8a2be2;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-            width: fit-content; /* Adjust width to fit content */
-            margin-left: 1rem;
-      
-            @media (max-width: 1024px) {
-                margin-left: 0;
-                margin-right: 1rem;
-            }
-      
-            &:hover {
-              background-color: #6927a9;
-            }
-          }
-      
-          button[type='submit'] {
-            padding: 8px 16px;
-            background-color: #8a2be2;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-            width: 100%;
-      
-            &:hover {
-              background-color: #6927a9;
-            }
-      
-            &:disabled {
-              background-color: #ccc;
-              cursor: not-allowed;
-            }
-          }
+.btn-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+  .heading {
+    width: 100%;
+    min-height: 60px;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+
+
+    @media (max-width: 1024px) {
+      height: auto;
+      /* Change height to auto for dynamic height */
+      flex-direction: column;
+      align-items: flex-start;
+      /* Adjust alignment for mobile layout */
+      padding-bottom: 0.5rem;
+      /* Adjust padding as needed */
+    }
+
+    h2 {
+      white-space: normal;
+      /* Allow title to wrap to multiple lines */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: .5rem 0;
+      text-align: left;
+    }
+
+    .form-heading-btn {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+
+      @media (max-width: 1024px) {
+        button {
+          margin-left: 0;
         }
       }
-      
 
-    .route-wrapper {
-        padding: 1rem;
-        border-radius: 5px;
+      button {
+        padding: 8px 16px;
+        background-color: #8a2be2;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        width: fit-content;
+        /* Adjust width to fit content */
+        margin-left: 1rem;
 
-        display: flexl;
-        flex-direction: column;
-
-        h2 {
-            color: $primary-color;
+        @media (max-width: 1024px) {
+          margin-left: 0;
+          margin-right: 1rem;
         }
 
-        ul{
-          background-color: #fff;
-          padding: 0 1rem;
+        &:hover {
+          background-color: #6927a9;
         }
-    }
+      }
 
-    .route-tbl {
+      button[type='submit'] {
+        padding: 8px 16px;
+        background-color: #8a2be2;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
         width: 100%;
-        border-collapse: collapse;
 
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ccc;
-            
-
-            textarea{
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 14px;
-                resize: none;
-                background-color: #fafafa;
-                width: 100%;
-            }
-
+        &:hover {
+          background-color: #6927a9;
         }
 
-        th {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 14px;
-            font-weight: 600;
-            color: grey;
-            text-align: center;
-
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
         }
-
-        .btn-wrappers {
-            display: flex;
-            align-items: center;
-            width: fit-content;
-        }
-
-        .btn-removes {
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
-
-        .btn-icons {
-            font-size: 18px;
-        }
+      }
     }
+  }
+
+
+  .route-wrapper {
+    padding: 1rem;
+    border-radius: 5px;
+
+    display: flexl;
+    flex-direction: column;
+
+    h2 {
+      color: $primary-color;
+    }
+
+    ul {
+      background-color: #fff;
+      padding: 0 1rem;
+      padding-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* Add a subtle box shadow */
+    }
+  }
+
+  .route-tbl {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+
+
+      textarea {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        resize: none;
+        background-color: #fafafa;
+        width: 100%;
+      }
+
+    }
+
+    th {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 600;
+      color: grey;
+      text-align: center;
+
+    }
+
+    .btn-wrappers {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .btn-removes {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .btn-icons {
+      font-size: 18px;
+    }
+  }
 }

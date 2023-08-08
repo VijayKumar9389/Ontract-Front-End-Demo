@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../store/userReducer';
 
 import './Sidebar.scss';
@@ -11,10 +11,12 @@ import { FaTruck, FaClipboardList } from 'react-icons/fa';
 import { BsFillBoxSeamFill } from 'react-icons/bs';
 import { RiHistoryFill } from 'react-icons/ri';
 import { MdAccountCircle, MdLogout } from 'react-icons/md';
+import NavMenu from '../PopUp/NavMenu/NavMenu';
 
 export const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const project = useSelector((state) => state.project.project);
     const dispatch = useDispatch();
 
     const toggle = () => {
@@ -27,10 +29,11 @@ export const Sidebar = () => {
             <div className='sidebar-logo'>
                 <h1>OnTract</h1>
             </div>
-            {/* 
-            <Sidebar isOpen={isOpen} toggle={toggle} /> */}
+            
+            <NavMenu isOpen={isOpen} toggle={toggle} />
 
             <ul className='nav-menu'>
+
                 <NavLink exact activeClassName='active' className='nav-link' to='/'>
                     <AiOutlineDashboard className='icon' /> Dashboard
                 </NavLink>

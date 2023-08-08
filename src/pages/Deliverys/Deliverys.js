@@ -1,42 +1,63 @@
-import { useState, useEffect } from 'react';
-import { getDeliverys } from '../../services/api'; 
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDeliverys } from '../../services/api';
+import { setOpen } from '../../store/projectReducer';
 
-import './Deliverys.scss';
-import { MdKeyboardArrowDown } from 'react-icons/md';
-
-import React from 'react'
+// Internal Components
 import DeliveryFilter from '../../components/Filter/DeliveryFilter/DeliveryFilter';
 import DeliveryTable from '../../components/Table/DeliveryTable/DeliveryTable';
+import DeliveryMobileRow from '../../components/MobileRow/DeliveryMobileRow/DeliveryMobileRow';
+
+// External Libraries
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TbSettingsSearch } from 'react-icons/tb';
+
+// Internal Styles
+import './Deliverys.scss';
+import Heading from '../../components/Heading/Heading';
 
 const Deliverys = () => {
 
+    // State Hooks
     const [deliverys, setDeliverys] = useState([]);
-    const table = 'Wascana_2044';
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    // Redux Hooks
+    const project = useSelector(state => state.project.project);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        // Get delivery data from database
-        getDeliverys(table)
-            .then((response) => setDeliverys(response.data));
-    }, []);
+        fetchData(project);
+    }, [project]);
+
+    const fetchData = async (project) => {
+        try {
+            const response = await getDeliverys(project);
+            setDeliverys(response);
+        } catch (error) {
+            console.error('Error fetching deliverys:', error);
+        }
+    }
 
     return (
         <div className='delivery-container'>
-            <div className='page-header'>
-                <h1>Deliverys</h1>
-                <button>
-                    Wascana 2044
-                    <MdKeyboardArrowDown className='icon' />
-                </button>
-            </div>
+            <Heading title={"Deliverys"} />
             <div className='body'>
                 <DeliveryFilter />
 
                 <div className='tbl-export'>
-                    <button>Export Deliverys: </button>
+                    <button>Export Deliverys: {deliverys.length}</button>
                 </div>
 
-                <DeliveryTable deliverys={deliverys} />
+                {isMobile ? (
+                    <ul className='stakeholder-list'>
+                        {deliverys.map((delivery, index) => {
+                            return <DeliveryMobileRow key={index} deliveryInfo={delivery} />
+                        })}
+                    </ul>
+                ) : (
+                    <DeliveryTable deliverys={deliverys} />
+                )}
             </div>
         </div>
     )

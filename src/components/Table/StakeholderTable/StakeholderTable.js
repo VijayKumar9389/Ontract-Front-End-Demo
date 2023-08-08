@@ -1,8 +1,11 @@
-
 import './StakeholderTable.scss';
 import StakeholderTableRow from '../../TableRow/StakeholderTableRow/StakeholderTableRow';
 
 const StakeholderTable = ({ stakeholders }) => {
+    if (!stakeholders || stakeholders.length === 0) {
+        return <div>No data available</div>;
+    }
+    
     return (
         <table className='stakeholder-tbl'>
             <thead>

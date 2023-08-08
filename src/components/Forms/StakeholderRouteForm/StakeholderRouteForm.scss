@@ -1,4 +1,3 @@
-
 .stakeholder-route-form  {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -8,7 +7,6 @@
     max-height: fit-content;
     height: fit-content;
     background-color: #fff;
-    border-radius: 4px;
     margin-bottom: 1rem;
     overflow: hidden;
 
@@ -17,22 +15,46 @@
         flex-direction: column;
     }
 
-
-    .route-form-name {
-        width: 100%;
+    .stakeholder-form-name {
+        width: auto;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        border: .5px solid #ddd;
+        
+
+        label {
+            background-color: #fff;
+            width: 100%;
+            padding: .5rem;
+            border-bottom: 1px solid #ddd;
+
+            @media (max-width: 1024px) {
+                border-bottom: none;
+            }
+        }
 
         @media (max-width: 1024px) {
-            justify-content: center;
-            align-items: center;
+            
 
             label {
                 display: none;
+
             }
         }
+
+        h4 {
+            margin: 0;
+            text-overflow: ellipsis;
+            padding: 1rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+        }
+
 
         .route-name-wrapper {
             height: 100%;
@@ -65,24 +87,20 @@
         }
     }
 
-    .table-row {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: fit-content;
-    }
-
-    .route-form-cell {
+    .stakeholder-form-cell {
         height: 100%;
         width: 100%;
         display: flex;
-        grid-template-rows: 1rem 1fr;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border: .5px solid #ddd;
         margin: 0;
         overflow: hidden;
+
+
+            grid-template-rows: 1rem 1fr;
+
 
         h4{
             height: 100%;
@@ -124,17 +142,11 @@
             background-color: #fafafa;
         }
 
-
         @media (max-width: 1024px) {
             &:last-child {
                 border-top-left-radius: 5px;
                 border-top-right-radius: 5px;
             }
-
         }
-
-
     }
-
-
 }

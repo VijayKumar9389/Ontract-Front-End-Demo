@@ -1,41 +1,46 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+// Import React components and hooks
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import './Dashboard.scss';
+// Import API functions
+import { getStakeholderReport, getDeliveryReport } from '../../services/api';
+
+// Import custom components
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
+// Import styles
+import './Dashboard.scss';
+
+// Import Redux action
+import Heading from '../../components/Heading/Heading';
 const Dashboard = () => {
 
     const [stakeholderReport, setStakeholderReport] = useState([]);
     const [deliveryReport, setDeliveryReport] = useState([]);
-    const table = 'Wascana_2044'
+    const project = useSelector((state) => state.project.project);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getStakeholderReport();
-        getDeliveryReport();
-    }, []);
+        fetchData(project);
+    }, [project]);
 
-    async function getStakeholderReport() {
-        axios.get(`http://localhost:5500/stakeholder/report/${table}`)
-            .then((response) => setStakeholderReport(response.data));
-    }
+    const fetchData = async (project) => {
+        try {
+            const stakeholderData = await getStakeholderReport(project);
+            setStakeholderReport(stakeholderData);
 
-    async function getDeliveryReport() {
-        axios.get(`http://localhost:5500/delivery/stats/report/${table}_delivery`)
-            .then((response) => setDeliveryReport(response.data));
-    }
+            const deliveryData = await getDeliveryReport(project);
+            setDeliveryReport(deliveryData);
+
+        } catch (error) {
+            console.error('Error fetching reports:', error);
+        }
+    };
 
     return (
         <div className="dashboard-container">
 
-            <div className='page-header'>
-                <h1>Overview</h1>
-                <button>
-                    Wascana 2044
-                    <MdKeyboardArrowDown className='icon' />
-                </button>
-            </div>
+            <Heading title={"Dashboard"} />
 
             <div className="body">
                 <h2 className="dashboard-heading">Stakeholders</h2>
@@ -71,6 +76,22 @@ const Dashboard = () => {
                     <div className="dashboard-item">
                         <p className="dashboard-item-title">Stakeholders Missing Phone No</p>
                         <h4 className="dashboard-item-value">{stakeholderReport.missingPhone}</h4>
+                    </div>
+                    <div className="dashboard-item">
+                        <p className="dashboard-item-title">Single Tract:</p>
+                        <h4 className="dashboard-item-value">{stakeholderReport.single}</h4>
+                    </div>
+                    <div className="dashboard-item">
+                        <p className="dashboard-item-title">Multi Tract:</p>
+                        <h4 className="dashboard-item-value">{stakeholderReport.multi}</h4>
+                    </div>
+                    <div className="dashboard-item">
+                        <p className="dashboard-item-title">Corperation:</p>
+                        <h4 className="dashboard-item-value">{stakeholderReport.corporation}</h4>
+                    </div>
+                    <div className="dashboard-item">
+                        <p className="dashboard-item-title">People:</p>
+                        <h4 className="dashboard-item-value">{stakeholderReport.person}</h4>
                     </div>
                 </div>
                 <h2 className="dashboard-heading">Deliveries</h2>

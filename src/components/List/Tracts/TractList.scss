@@ -1,118 +1,138 @@
 .tract-record {
-    list-style: none;
-    padding-left: 0;
-    border-radius: 10px;
+  list-style: none;
+  padding-left: 0;
+  border-radius: 10px;
+  padding: 1rem;
+  padding-top: 0;
+  margin-bottom: 1rem;
 
-    .tract-header {
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: sticky;
-        top: 0;
-        background-color: #eaeaea;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  .tract-header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    /* Add a subtle border at the bottom */
 
-        h3 {
-            font-size: 1.5rem;
-          }
-          
-          p {
-            font-size: 1rem;
-            line-height: 1.5; /* Increase line-height for better mobile readability */
-            display: flex;
-            flex-wrap: wrap; /* Allow the content to wrap on mobile */
-            align-items: center;
-            margin-bottom: 0.5rem;
-          
-            .list-item {
-              font-weight: bold;
-              margin-right: 0.3rem;
-            }
-          
-            .separator {
-              color: #999;
-              margin: 0 0.3rem;
-            }
-          }
-          
-          
-          button {
-            background-color: #8a2be2;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            align-self: flex-start;
-            transition: background-color 0.3s ease-in-out;
-          
-            &:hover {
-              background-color: #6927a9; /* Darker color on hover */
-            }
-          }
-      }
-      
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0;
+      color: #333;
+
       @media (max-width: 768px) {
-        .tract-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      
-        h3 {
-          width: 100%;
-          text-align: left;
-          margin-bottom: 0.5rem;
-          font-size: 1.3rem; /* Slightly smaller font size for mobile */
-        }
-      
-        p {
-          margin: 0; /* Remove margin to reduce space */
-          font-size: 0.9rem; /* Adjust font size for better mobile readability */
-        }
+        margin-bottom: .5rem;
       }
-      
-
-      
-      @media (max-width: 1024px) {
-        .tract-header {
-          padding: 0.5rem;
-        }
-      
-        h3 {
-          font-size: 1.2rem;
-          margin-bottom: 0.3rem;
-        }
-      
-        p {
-          font-size: 0.9rem;
-          height: 100%;
-        }
-      
-        button {
-          font-size: 0.9rem;
-          padding: 6px 12px;
-        }
-      }
-      
-
-
-    .tract-row {
-        display: flex;
-        align-items: center;
-        border-left: 2px solid;
-        padding-left: 8px;
-
-        &:last-child {
-            border-bottom: none;
-        }
     }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      @media (max-width: 768px) {
+        margin-bottom: .5rem;
+      }
+
+      .list-item {
+        font-weight: bold;
+        margin-right: 0.5rem;
+        color: #555;
+      }
+
+      .separator {
+        color: #999;
+        margin: 0 0.3rem;
+      }
+    }
+
+    button {
+      font-size: 0.9rem;
+      background-color: #fff;
+      color: #ccc;
+      border: 1px solid #ccc;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background-color 0.3s ease-in-out;
+      text-transform: uppercase;
+      /* Uppercase the button text */
+
+      &:hover {
+        background-color: #f3e9fc;
+        border: 1px solid #6927a9;
+        color:  #6927a9;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tract-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h3 {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      /* Slightly smaller font size for mobile */
+    }
+
+    p {
+      margin: 0;
+      /* Remove margin to reduce space */
+      font-size: 0.9rem;
+      /* Adjust font size for better mobile readability */
+    }
+  }
+
+
+
+  @media (max-width: 1024px) {
+    .tract-header {
+      padding: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      height: 100%;
+    }
+
+    button {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  }
+
+
+
+  .tract-row {
+    display: flex;
+    align-items: center;
+    border-left: 2px solid;
+    padding-left: 8px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 
 .tract-list-container {
-    padding-bottom: 1rem;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
